@@ -7,6 +7,43 @@ search is expanding to **Porto + the Douro + the Minho** (Norte), optimising for
 dog-walkable greenery/nature/quiet and river-beach proximity rather than ocean beaches —
 kept as a **separate pool** (`data/listings-norte.jsonl`) so Algarve valuations stay clean.
 
+## Re-collection 2026-10-26 — both pools, published (`deploy` `2db6ab7`)
+The last Monday on the cadence; ten days after 10-16. Both pools, both sites, paged to the true
+end of every search; `suspect` was `none` on every page and the imovirtual filter held on every page.
+
+| | pulled | new | culled | cull coverage |
+|---|---|---|---|---|
+| Algarve · idealista | 651 / 651 | +82 | 91 (10 back) | 87.6% |
+| Algarve · imovirtual | 418 | +71 | — | — |
+| Norte · idealista | 2034 / 2034 | +381 | 379 (34 back) | 84.1% |
+| Norte · imovirtual | 2329 | +356 | — | — |
+
+**+890 new, 470 culled, 464 found dead by the liveness probes** (72 Algarve, 392 Norte).
+Stores: Algarve 2646 → **2799**, Norte 10006 → **10743**. Maintenance: descriptions +64,
+photos +153 Algarve / +728 Norte. District totals: Faro 651, Porto 1205, Braga 473, Viana 176,
+Vila Real 52, Viseu 128.
+
+**Ranked after enrich: Algarve 543** (under 138 · fair 217 · over 188), 543 located; **Norte 2103**
+(under 592 · fair 894 · over 606 · 11 unbanded), 2103 located. 285 tests pass; publish gate clear. The
+hosted app was asleep, so waking it loaded the new `rules.py` without a Reboot; it showed 543 / 2103
+in the pool, read off the live page.
+
+**Step 0:** 11 new dismissals since 10-16 (7 Algarve, 4 Norte), all `unspecified`, all Malia
+on 10-16. One filter miss: an Albufeira "T2 à semana" — a weekly let. `rules.py` gains
+**short-term-006** (*à semana* anchored on a verb or a typology); bare `a semana` was tested and
+rejected (22 Algarve hits, mostly move-in dates like *"primeira semana de agosto"*). Anchored it
+marks 6 Algarve + 2 Norte, all verified as `rule:short-term-006` after enrich. Entry `adc433ee90`
+resolved; the other ten read as taste and stay open.
+
+**Norte imovirtual was paged by `fetch` + `DOMParser`** running the unmodified extract.js —
+66 pages in ~1 min instead of 66 navigations. Recipe in RECOLLECT.md, with the exact Norte
+enrich call (previously prose only).
+
+**The publish force-pushed over a stray `deploy` commit**, `b3879b0` "Added Dev Container
+Folder" (10-16 16:27) — Streamlit Cloud's boilerplate `.devcontainer/devcontainer.json`, from
+opening the app in Codespaces. Not app-affecting; still recoverable locally. `publish.sh` rebuilds
+`deploy` from `main` every time, so anything committed straight to `deploy` will always be lost.
+
 ## Re-collection 2026-10-16 — both pools, published (`deploy` `95f4fdd`)
 Eight days after 10-08, on request (a Thursday; 10-12 was skipped). Both pools, both sites,
 paged to the true end of every search; `suspect` was `none` on every page but one, and that

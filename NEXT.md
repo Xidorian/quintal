@@ -4,11 +4,9 @@
 reading the 👎 notes (step 0 of RECOLLECT.md). Both pools are live; the Norte tail below is
 the only unfinished build work.
 
-> ✅ **Pulled 2026-10-16** (both pools, both sites, on request — Thursday, not a Monday) and
-> published — `deploy` `95f4fdd`. Numbers in STATUS.md. Step 0 added the first five authored rules
-> (`rules.py`, all `short_term`) and blocked 20 text-less misses. Next on the standing
-> cadence would be **10-19**, three days out — skip it and go again **10-26**, the last
-> Monday on the cadence; decide then whether to continue.
+> ✅ **Pulled 2026-10-26** (both pools, both sites — the last Monday on the cadence) and
+> published — `deploy` `2db6ab7`. Numbers in STATUS.md. Step 0 added `short-term-006` (weekly
+> lets). **The cadence ends here: decide whether to keep pulling weekly** (likely moved by now).
 
 ## QT-060 — undo a pass, and a passed 👍 card stays put (2026-10-16)
 Malia mis-tapped "Not for us" on a listing she had liked and it vanished without the reason
