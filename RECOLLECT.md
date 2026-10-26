@@ -348,4 +348,16 @@ methods the old module lacks (2026-10-16 — see DEPLOY.md). Data-only publishes
   the 5 districts to plateau, one accumulated `q_ide`, one `--cull` ingest. Imovirtual: apt+moradia
   × 5 districts. Enrich with `region='norte', min_beds=2` and **no ORS key** (straight-line —
   2431×2 routes blow the free 2000/day quota). Its concelhos come clean from imovirtual
-  `__NEXT_DATA__` + a reverse-geocode pass; Algarve's ORS routes stay cached.
+  `__NEXT_DATA__` + a reverse-geocode pass; Algarve's ORS routes stay cached. The exact call,
+  with every sidecar pointed at its `-norte` file (run in a shell that has **not** sourced `.env`):
+  ```
+  python -c "from quintal.pipeline import run; L=run('data/listings-norte.jsonl', enrich=True, region='norte', min_beds=2, blocklist_path='data/blocklist-norte.json', cache_path='data/enrichment_cache-norte.json', descriptions_path='data/descriptions-norte.json', delisted_path='data/delisted-norte.json', geo_path='data/geo-norte.json'); print(len(L),'ranked')"
+  ```
+- **Imovirtual pages fastest by `fetch`, not navigation (2026-10-26).** It is server-rendered, so
+  one eval on any imovirtual tab can fetch each results page, parse it with `DOMParser`, and run
+  the *unmodified* `q_src` against the parsed document by passing it in as `document`:
+  `new Function('document', SRC)(doc)` (clear `window.__qImvIndex` before each page — it caches
+  the `__NEXT_DATA__` index). Read `totalPages` from page 1's blob, page 1..N, log
+  `suspect` + `res.url.includes('priceMax')` per page into `window.__qLog`, and launch it as an
+  un-awaited async IIFE so the 45s CDP timeout can't bite; poll a `__qDone` flag. All ten Norte
+  searches (2329 rows, 66 pages) took about a minute. Idealista still needs real navigation.

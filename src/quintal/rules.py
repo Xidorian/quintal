@@ -156,6 +156,18 @@ RULES: list[Rule] = [
         note="a unit 'inserido num glamping' is a tourist site, not a home; 5 Algarve matches "
         "(one Boliqueime landlord, five postings), 4 already caught by the month span",
     ),
+    Rule(
+        id="short-term-006",
+        attribute="short_term",
+        verdict="yes",
+        pattern=r"\b(?:alugar|aluguer|aluga se|arrenda se|arrendar|arrendad[oa]|t\d(?: \d)?) a semana\b",
+        source="feedback entry adc433ee90 — Malia, 2026-10-16",
+        added="2026-10-26",
+        note="a let priced 'à semana' (by the week); anchored on the verb or the typology because "
+        "bare 'a semana' matches 'primeira semana de agosto' (a move-in date) — 22 Algarve hits, "
+        "13 new, mostly wrong. Anchored: 6 Algarve (4 new, all weekly lets) + 2 Norte (1 new, "
+        "'posso alugar à semana ou ao mês')",
+    ),
 ]
 
 
